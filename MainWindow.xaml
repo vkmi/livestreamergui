@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TwitchGUI"
         mc:Ignorable="d"
         Title="Livestreamer GUI" Height="150" Width="420">
-        <TabControl x:Name="tabControl" Background="Gray">
+        <TabControl x:Name="tabControl" Background="Gray" BorderBrush="Gray">
         <TabItem x:Name="main" Header="Main" Background="Gray" FontSize="14">
             <Grid Background="Gray">
                 <Grid.RowDefinitions>
@@ -19,7 +19,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Button x:Name="btn_play" Content="Play" Grid.Column="3" Margin="5" Click="btn_play_Click" Background="DarkGray" FontSize="18"/>
-                    <TextBox x:Name="txtin_url" Text="Url to stream" Margin="5" Background="DarkGray" GotFocus="txtin_url_GotFocus" FontSize="18"/>
+                    <TextBox x:Name="txtin_url" Text="Url to stream" ToolTip="Double Click to clear field" Margin="5" Background="DarkGray" GotFocus="txtin_url_GotFocus" MouseDoubleClick="txtin_url_GotFocus" FontSize="18"/>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
