@@ -24,8 +24,7 @@ namespace TwitchGUI
     {
         //lista di stringhe da concatenare per passare parametri
         string path_to_ls = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86)+"\\Livestreamer\\livestreamer.exe";
-        //string temp_quality = "source";
-        string video_quality = "source";
+        string video_quality = "best";
         cls_qualityitem[] qualitylist = new cls_qualityitem[] {
             new cls_qualityitem(0,"Audio", "audio_mp4","audio"),
             new cls_qualityitem(1,"Best (default)", "720p","source"),
