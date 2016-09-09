@@ -16,3 +16,6 @@ C:\Users\vkmi\Documents\Visual Studio 2015\Projects\TwitchGUI\bin\Debug\TwitchGU
 C:\Users\vkmi\Documents\Visual Studio 2015\Projects\TwitchGUI\bin\Debug\TwitchGUI.application
 C:\Users\vkmi\Documents\Visual Studio 2015\Projects\TwitchGUI\obj\Debug\TwitchGUI.exe.manifest
 C:\Users\vkmi\Documents\Visual Studio 2015\Projects\TwitchGUI\obj\Debug\TwitchGUI.application
+C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\bin\Debug\TwitchGUI.exe.config
+C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\obj\Debug\TwitchGUI.exe
+C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\obj\Debug\TwitchGUI.pdb
