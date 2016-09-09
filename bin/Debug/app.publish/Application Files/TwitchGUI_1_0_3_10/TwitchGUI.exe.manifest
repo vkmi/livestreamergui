@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="TwitchGUI.exe" version="1.0.3.10" publicKeyToken="4de3454b7989c8c4" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="1472820852_twitch-2048-black.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="TwitchGUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="TwitchGUI.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TwitchGUI.exe" size="219608">
+      <assemblyIdentity name="TwitchGUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Uv+atlB9TGZ9MMU9UixjHK3RYiSm95O7rsxpWGaMgAY=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="1472820852_twitch-2048-black.ico" size="101446">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>oWCysXL5b+oV+20LP29eYM6LjCE13TpQwr4snunQ0As=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="TwitchGUI.exe.config" size="189">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>6N7MliNbVJSIAIPrecIshMbZ7zEoKLr5SQvud4LDUOw=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=DESKTOP-QCL9C36\vkmi" issuerKeyHash="f32973fb5cf76115d94c148d7d4f59b78f578a80" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>o8QuwxGbhEMWxr2JEAzSCfE6tFXIr90b38XijTfzMjI=</DigestValue></Reference></SignedInfo><SignatureValue>XRw1LXwHowe8SHr8UW5sEchBHnUTqcg53SFz3ivqT1QOHptaZSIDEkuAcAVdfkIGAua/QoCvIHZjvXNCQOsgYRN6rfMNpTDNQcM18ccrq7fH5Y+WCgoO/QXxnKhae+LVVe+Fjf70Bs4iU+eZKTqo4nvejZLAxvHHfJU5fbSUV7Q=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>jhNhiBjNXR3ki68x0JsqTBOFV8veUPPAix6TnJeqf8qD935mnaBsQoMVbiqWPze5PTyEEVyDcGWYLbimZ9OctSZVVBfPgHOiLqKWUbXrOk6n6kYtRrFLvnvjjQjyUksHoR4RYjuVBxJMTl24BsTBny5Tcb5f6aQaGq0DTLMucuk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="3232f3378de2c5df1bddafc855b43af109d20c1089bdc61643849b11c32ec4a3" Description="" Url=""><as:assemblyIdentity name="TwitchGUI.exe" version="1.0.3.10" publicKeyToken="4de3454b7989c8c4" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=DESKTOP-QCL9C36\vkmi</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>RkimTp9wTCvzLi1DkH3AVNxapzDn63g7qkD6EOkdG9o=</DigestValue></Reference></SignedInfo><SignatureValue>IHBPMqO4RQbHPXKtO6XBfKZC5zyoWg4J/T9V1cU3xcB9HfU7DGM6x30dQyZvJ+V0SiFRiK2M1yBmeO3kOzRfD1xaxyKKNwUXdgQuZa9hRKOY23VWiHmoLj+74jwwO0yvndWzHVyG7bIpmSv3+aucFtlzQmNJCx3aHsrqXNucyJ8=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>jhNhiBjNXR3ki68x0JsqTBOFV8veUPPAix6TnJeqf8qD935mnaBsQoMVbiqWPze5PTyEEVyDcGWYLbimZ9OctSZVVBfPgHOiLqKWUbXrOk6n6kYtRrFLvnvjjQjyUksHoR4RYjuVBxJMTl24BsTBny5Tcb5f6aQaGq0DTLMucuk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB6TCCAVKgAwIBAgIQUXcHh+KiKp1IjECGRJruPzANBgkqhkiG9w0BAQsFADAzMTEwLwYDVQQDHigARABFAFMASwBUAE8AUAAtAFEAQwBMADkAQwAzADYAXAB2AGsAbQBpMB4XDTE2MDkwMTExMTg0M1oXDTE3MDkwMTE3MTg0M1owMzExMC8GA1UEAx4oAEQARQBTAEsAVABPAFAALQBRAEMATAA5AEMAMwA2AFwAdgBrAG0AaTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAjhNhiBjNXR3ki68x0JsqTBOFV8veUPPAix6TnJeqf8qD935mnaBsQoMVbiqWPze5PTyEEVyDcGWYLbimZ9OctSZVVBfPgHOiLqKWUbXrOk6n6kYtRrFLvnvjjQjyUksHoR4RYjuVBxJMTl24BsTBny5Tcb5f6aQaGq0DTLMucukCAwEAATANBgkqhkiG9w0BAQsFAAOBgQAQ0ZDmIi/+S2tlaz+5o5YFNlXqQsjvrKPtwuixdPzK/IYHuRfDyid2AQASMUS7qHO+/JQ51OYosQpqnH+0kPbsM3EVcAg0/z81OsglWB99ohJk2DfHMS/Aixk9W30J6YN2rRWODQ/HHfG++pZzZ3UGW5lTaS2xFzqF36nkgdg2bQ==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

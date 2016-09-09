@@ -34,7 +34,7 @@ namespace TwitchGUI
             new cls_qualityitem(3,"Medium", "360p","medium"),
             new cls_qualityitem(4,"Low", "240p","low"),
             new cls_qualityitem(5,"Worst", "144p","mobile")};
-        string[] typedhistory = new string[20];
+        cls_historyitem[] typedhistory = new cls_historyitem[20];
 
         public MainWindow()
         {
@@ -42,6 +42,7 @@ namespace TwitchGUI
             cmb_quality.ItemsSource = qualitylist;
             cmb_quality.DisplayMemberPath = "Name";
             lst_typedhistory.ItemsSource = typedhistory;
+            lst_typedhistory.DisplayMemberPath = "Name";
         }
 
         // play function
@@ -123,7 +124,7 @@ namespace TwitchGUI
             {
                 typedhistory[i] = typedhistory[i - 1];
             }
-            typedhistory[0] = title;
+            typedhistory[0] = new cls_historyitem(title,txtin_url.Text);
             string[] fake = new string[30];
             lst_typedhistory.ItemsSource = fake;
             lst_typedhistory.ItemsSource = typedhistory;
@@ -132,8 +133,8 @@ namespace TwitchGUI
         // change content of url field and goes back to main tab after selecting an item from history
         private void lst_typedhistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string temp = lst_typedhistory.SelectedItem as string;
-            txtin_url.Text = temp;
+            cls_historyitem temp = lst_typedhistory.SelectedItem as cls_historyitem;
+            txtin_url.Text = temp.Url;
             tabControl.SelectedItem = main;
         }
 
