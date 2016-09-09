@@ -16,10 +16,7 @@ using System.Diagnostics;
 using System.Media;
 using System.Net;
 using System.Text.RegularExpressions;
-<<<<<<< HEAD
 using System.IO;
-=======
->>>>>>> b5759978389aeacf62db4f92227865746d7d20f5
 
 namespace TwitchGUI
 {
@@ -39,13 +36,10 @@ namespace TwitchGUI
             new cls_qualityitem(3,"Medium", "360p","medium"),
             new cls_qualityitem(4,"Low", "240p","low"),
             new cls_qualityitem(5,"Worst", "144p","mobile")};
-<<<<<<< HEAD
+
         List<cls_historyitem> typedhistory = new List<cls_historyitem>(); 
         List<cls_historyitem> tmptypedhistory = new List<cls_historyitem>(); 
         #endregion
-=======
-        cls_historyitem[] typedhistory = new cls_historyitem[20];
->>>>>>> b5759978389aeacf62db4f92227865746d7d20f5
 
         public MainWindow()
         {
@@ -57,12 +51,8 @@ namespace TwitchGUI
             cmb_quality.ItemsSource = qualitylist;
             cmb_quality.DisplayMemberPath = "Name";
             lst_typedhistory.ItemsSource = typedhistory;
-<<<<<<< HEAD
             lst_typedhistory.DisplayMemberPath = "Name"; 
             #endregion
-=======
-            lst_typedhistory.DisplayMemberPath = "Name";
->>>>>>> b5759978389aeacf62db4f92227865746d7d20f5
         }
 
         // play function
@@ -81,8 +71,6 @@ namespace TwitchGUI
             }
             args += " " +txtin_url.Text + " " + video_quality;
             video.Arguments = args;
-            //MessageBox.Show("url= " + path_to_ls );
-            //MessageBox.Show("args= " + args);
             
             Process.Start(video);
             if ((chk_chat.IsChecked == true) && (txtin_url.Text.Contains("twitch")))
@@ -131,34 +119,30 @@ namespace TwitchGUI
         // handles typedhistory
         private void add_to_history()
         {
+            // picks the right keywords depending on source
             string title = txtin_url.Text;
-<<<<<<< HEAD
             string sauce = "";
             if (txtin_url.Text.Contains("youtu"))
             {
                 title = yt_parser();
                 sauce = "YouTube";
             }
-            else if (txtin_url.Text.Contains("twitch"))
-=======
-            if (txtin_url.Text.Contains("youtu")) title = yt_parser();
-            else if (txtin_url.Text.Contains("twitch")) title = tw_parser();
-            for (int i = typedhistory.Length-2; i > 0; i--)
->>>>>>> b5759978389aeacf62db4f92227865746d7d20f5
-            {
+            else if (txtin_url.Text.Contains("twitch")) {
                 title = tw_parser();
                 if (txtin_url.Text.Contains("/v/")) sauce = "Twitch VOD";
                 else sauce = "Twitch stream";
             }
-<<<<<<< HEAD
+
+            // adds element to the volatile history
             typedhistory.Insert(0,new cls_historyitem(title, txtin_url.Text, sauce));
+
+            // adds element to the txt for non volatile history
             StreamWriter tempsw = new StreamWriter("History.txt", true);
             tempsw.WriteLine(title + "§" + txtin_url.Text + "§" + sauce);
             tempsw.Close();
             tempsw.Dispose();
-=======
-            typedhistory[0] = new cls_historyitem(title,txtin_url.Text);
->>>>>>> b5759978389aeacf62db4f92227865746d7d20f5
+
+            // forces the listbox to update by changing the items source to a fake list and back to the right one
             string[] fake = new string[30];
             lst_typedhistory.ItemsSource = fake;
             lst_typedhistory.ItemsSource = typedhistory;
@@ -167,7 +151,6 @@ namespace TwitchGUI
         // change content of url field and goes back to main tab after selecting an item from history
         private void lst_typedhistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-<<<<<<< HEAD
             if (lst_typedhistory.SelectedItem != null)
             {
                 cls_historyitem temp = lst_typedhistory.SelectedItem as cls_historyitem;
@@ -203,7 +186,8 @@ namespace TwitchGUI
             load_history();
             lst_typedhistory.ItemsSource = typedhistory;
         }
-
+        
+        // parse last 20 history items from the txt file to a local list
         private void load_history()
         {
             if (!File.Exists("History.txt")) File.Create("History.txt");
@@ -242,30 +226,5 @@ namespace TwitchGUI
             tb.GotFocus -= txtin_url_GotFocus;
         } 
         #endregion
-
-=======
-            cls_historyitem temp = lst_typedhistory.SelectedItem as cls_historyitem;
-            txtin_url.Text = temp.Url;
-            tabControl.SelectedItem = main;
-        }
-
-        // parser for the title of a youtube video
-        private string yt_parser()
-        {
-            string html = new WebClient().DownloadString(txtin_url.Text);
-            string[] splitted_html_t1 = Regex.Split(html, "<meta name=\"title\" content=\"");
-            string[] splitted_html_t2 = Regex.Split(splitted_html_t1[1], "\">");
-            return splitted_html_t2[0];
-        }
-
-        // parser for the title of a twitch stream/VOD
-        private string tw_parser()
-        {
-            string html = new WebClient().DownloadString(txtin_url.Text);
-            string[] splitted_html_t1 = Regex.Split(html, "' property='og:description'>");
-            string[] splitted_html_t2 = Regex.Split(splitted_html_t1[0], "<meta content='");
-            return splitted_html_t2[splitted_html_t2.Length - 1];
-        }
->>>>>>> b5759978389aeacf62db4f92227865746d7d20f5
     }
 }

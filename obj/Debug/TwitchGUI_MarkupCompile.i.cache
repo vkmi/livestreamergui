@@ -4,25 +4,17 @@
 winexe
 C#
 .cs
-<<<<<<< HEAD
-C:\Users\vkmi\Documents\TwitchGUI\obj\Debug\
-=======
 C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\obj\Debug\
->>>>>>> b5759978389aeacf62db4f92227865746d7d20f5
 TwitchGUI
 none
 false
 DEBUG;TRACE
-<<<<<<< HEAD
-C:\Users\vkmi\Documents\TwitchGUI\App.xaml
-=======
 C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\App.xaml
->>>>>>> b5759978389aeacf62db4f92227865746d7d20f5
 11151548125
 
 11-793572663
 13738642453
 MainWindow.xaml;
 
-True
+False
 

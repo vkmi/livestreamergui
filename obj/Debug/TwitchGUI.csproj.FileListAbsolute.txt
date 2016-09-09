@@ -1,42 +1,18 @@
-c:\users\vkmi\documents\visual studio 2015\Projects\TwitchGUI\bin\Debug\TwitchGUI.exe.config
-c:\users\vkmi\documents\visual studio 2015\Projects\TwitchGUI\bin\Debug\TwitchGUI.exe
-c:\users\vkmi\documents\visual studio 2015\Projects\TwitchGUI\bin\Debug\TwitchGUI.pdb
-c:\users\vkmi\documents\visual studio 2015\Projects\TwitchGUI\obj\Debug\TwitchGUI.csprojResolveAssemblyReference.cache
-c:\users\vkmi\documents\visual studio 2015\Projects\TwitchGUI\obj\Debug\MainWindow.g.cs
-c:\users\vkmi\documents\visual studio 2015\Projects\TwitchGUI\obj\Debug\App.g.cs
-c:\users\vkmi\documents\visual studio 2015\Projects\TwitchGUI\obj\Debug\TwitchGUI_MarkupCompile.cache
-c:\users\vkmi\documents\visual studio 2015\Projects\TwitchGUI\obj\Debug\TwitchGUI_MarkupCompile.lref
-c:\users\vkmi\documents\visual studio 2015\Projects\TwitchGUI\obj\Debug\MainWindow.baml
-c:\users\vkmi\documents\visual studio 2015\Projects\TwitchGUI\obj\Debug\TwitchGUI.g.resources
-c:\users\vkmi\documents\visual studio 2015\Projects\TwitchGUI\obj\Debug\TwitchGUI.Properties.Resources.resources
-c:\users\vkmi\documents\visual studio 2015\Projects\TwitchGUI\obj\Debug\TwitchGUI.csproj.GenerateResource.Cache
-c:\users\vkmi\documents\visual studio 2015\Projects\TwitchGUI\obj\Debug\TwitchGUI.exe
-c:\users\vkmi\documents\visual studio 2015\Projects\TwitchGUI\obj\Debug\TwitchGUI.pdb
-C:\Users\vkmi\Documents\Visual Studio 2015\Projects\TwitchGUI\bin\Debug\TwitchGUI.exe.manifest
-C:\Users\vkmi\Documents\Visual Studio 2015\Projects\TwitchGUI\bin\Debug\TwitchGUI.application
-C:\Users\vkmi\Documents\Visual Studio 2015\Projects\TwitchGUI\obj\Debug\TwitchGUI.exe.manifest
-C:\Users\vkmi\Documents\Visual Studio 2015\Projects\TwitchGUI\obj\Debug\TwitchGUI.application
-<<<<<<< HEAD
-C:\Users\vkmi\Documents\TwitchGUI\bin\Debug\TwitchGUI.exe.config
-C:\Users\vkmi\Documents\TwitchGUI\obj\Debug\TwitchGUI.exe
-C:\Users\vkmi\Documents\TwitchGUI\obj\Debug\TwitchGUI.pdb
-C:\Users\vkmi\Documents\TwitchGUI\obj\Debug\TwitchGUI.csprojResolveAssemblyReference.cache
-C:\Users\vkmi\Documents\TwitchGUI\obj\Debug\MainWindow.g.cs
-C:\Users\vkmi\Documents\TwitchGUI\obj\Debug\App.g.cs
-C:\Users\vkmi\Documents\TwitchGUI\obj\Debug\TwitchGUI_MarkupCompile.cache
-C:\Users\vkmi\Documents\TwitchGUI\obj\Debug\TwitchGUI_MarkupCompile.lref
-C:\Users\vkmi\Documents\TwitchGUI\bin\Debug\TwitchGUI.exe.manifest
-C:\Users\vkmi\Documents\TwitchGUI\bin\Debug\TwitchGUI.application
-C:\Users\vkmi\Documents\TwitchGUI\bin\Debug\TwitchGUI.exe
-C:\Users\vkmi\Documents\TwitchGUI\bin\Debug\TwitchGUI.pdb
-C:\Users\vkmi\Documents\TwitchGUI\obj\Debug\MainWindow.baml
-C:\Users\vkmi\Documents\TwitchGUI\obj\Debug\TwitchGUI.g.resources
-C:\Users\vkmi\Documents\TwitchGUI\obj\Debug\TwitchGUI.Properties.Resources.resources
-C:\Users\vkmi\Documents\TwitchGUI\obj\Debug\TwitchGUI.csproj.GenerateResource.Cache
-C:\Users\vkmi\Documents\TwitchGUI\obj\Debug\TwitchGUI.exe.manifest
-C:\Users\vkmi\Documents\TwitchGUI\obj\Debug\TwitchGUI.application
-=======
 C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\bin\Debug\TwitchGUI.exe.config
+C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\bin\Debug\TwitchGUI.exe.manifest
+C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\bin\Debug\TwitchGUI.application
+C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\bin\Debug\TwitchGUI.exe
+C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\bin\Debug\TwitchGUI.pdb
+C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\obj\Debug\TwitchGUI.csprojResolveAssemblyReference.cache
+C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\obj\Debug\MainWindow.g.cs
+C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\obj\Debug\App.g.cs
+C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\obj\Debug\TwitchGUI_MarkupCompile.cache
+C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\obj\Debug\TwitchGUI_MarkupCompile.lref
+C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\obj\Debug\MainWindow.baml
+C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\obj\Debug\TwitchGUI.g.resources
+C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\obj\Debug\TwitchGUI.Properties.Resources.resources
+C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\obj\Debug\TwitchGUI.csproj.GenerateResource.Cache
+C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\obj\Debug\TwitchGUI.exe.manifest
+C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\obj\Debug\TwitchGUI.application
 C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\obj\Debug\TwitchGUI.exe
 C:\Users\vkmi\Documents\Visual Studio 2015\Projects\Twitch GUI\obj\Debug\TwitchGUI.pdb
->>>>>>> b5759978389aeacf62db4f92227865746d7d20f5
