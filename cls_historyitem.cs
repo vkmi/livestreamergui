@@ -8,6 +8,17 @@ namespace TwitchGUI
 {
     class cls_historyitem
     {
+<<<<<<< HEAD
+        public cls_historyitem(string title, string url, string source)
+        {
+            _name = title + " - " + source;
+            _url = url;
+            _source = source;
+        }
+
+        #region Properties of the class
+        private string _name, _url, _source;
+=======
         public cls_historyitem(string name, string url)
         {
             _name = name;
@@ -15,6 +26,7 @@ namespace TwitchGUI
         }
 
         private string _name, _url;
+>>>>>>> b5759978389aeacf62db4f92227865746d7d20f5
 
         public string Name
         {
@@ -25,5 +37,14 @@ namespace TwitchGUI
         {
             get { return _url; }
         }
+<<<<<<< HEAD
+
+        public string Source
+        {
+            get { return _source; }
+        } 
+        #endregion
+=======
+>>>>>>> b5759978389aeacf62db4f92227865746d7d20f5
     }
 }

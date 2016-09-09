@@ -16,6 +16,10 @@ using System.Diagnostics;
 using System.Media;
 using System.Net;
 using System.Text.RegularExpressions;
+<<<<<<< HEAD
+using System.IO;
+=======
+>>>>>>> b5759978389aeacf62db4f92227865746d7d20f5
 
 namespace TwitchGUI
 {
@@ -25,7 +29,8 @@ namespace TwitchGUI
     public partial class MainWindow : Window
     {
         //lista di stringhe da concatenare per passare parametri
-        string path_to_ls = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86)+"\\Livestreamer\\livestreamer.exe";
+        #region Global variables
+        string path_to_ls = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + "\\Livestreamer\\livestreamer.exe";
         string video_quality = "best";
         cls_qualityitem[] qualitylist = new cls_qualityitem[] {
             new cls_qualityitem(0,"Audio", "audio_mp4","audio"),
@@ -34,15 +39,30 @@ namespace TwitchGUI
             new cls_qualityitem(3,"Medium", "360p","medium"),
             new cls_qualityitem(4,"Low", "240p","low"),
             new cls_qualityitem(5,"Worst", "144p","mobile")};
+<<<<<<< HEAD
+        List<cls_historyitem> typedhistory = new List<cls_historyitem>(); 
+        List<cls_historyitem> tmptypedhistory = new List<cls_historyitem>(); 
+        #endregion
+=======
         cls_historyitem[] typedhistory = new cls_historyitem[20];
+>>>>>>> b5759978389aeacf62db4f92227865746d7d20f5
 
         public MainWindow()
         {
             InitializeComponent();
+
+            load_history();
+
+            #region fill combobox/listbox
             cmb_quality.ItemsSource = qualitylist;
             cmb_quality.DisplayMemberPath = "Name";
             lst_typedhistory.ItemsSource = typedhistory;
+<<<<<<< HEAD
+            lst_typedhistory.DisplayMemberPath = "Name"; 
+            #endregion
+=======
             lst_typedhistory.DisplayMemberPath = "Name";
+>>>>>>> b5759978389aeacf62db4f92227865746d7d20f5
         }
 
         // play function
@@ -85,14 +105,7 @@ namespace TwitchGUI
             Process.Start(video);
         }
 
-        // simple code to clear the text field upon focus
-        private void txtin_url_GotFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox tb = (TextBox)sender;
-            tb.Text = string.Empty;
-            tb.GotFocus -= txtin_url_GotFocus;
-        }
-
+        
         // simple code to assign the right keywords based on the kind of stream (youtube/twitch)
         private void asssign_quality()
         {
@@ -114,17 +127,38 @@ namespace TwitchGUI
             }
         }
 
+        #region Stuff related to history functions
         // handles typedhistory
         private void add_to_history()
         {
             string title = txtin_url.Text;
+<<<<<<< HEAD
+            string sauce = "";
+            if (txtin_url.Text.Contains("youtu"))
+            {
+                title = yt_parser();
+                sauce = "YouTube";
+            }
+            else if (txtin_url.Text.Contains("twitch"))
+=======
             if (txtin_url.Text.Contains("youtu")) title = yt_parser();
             else if (txtin_url.Text.Contains("twitch")) title = tw_parser();
             for (int i = typedhistory.Length-2; i > 0; i--)
+>>>>>>> b5759978389aeacf62db4f92227865746d7d20f5
             {
-                typedhistory[i] = typedhistory[i - 1];
+                title = tw_parser();
+                if (txtin_url.Text.Contains("/v/")) sauce = "Twitch VOD";
+                else sauce = "Twitch stream";
             }
+<<<<<<< HEAD
+            typedhistory.Insert(0,new cls_historyitem(title, txtin_url.Text, sauce));
+            StreamWriter tempsw = new StreamWriter("History.txt", true);
+            tempsw.WriteLine(title + "§" + txtin_url.Text + "§" + sauce);
+            tempsw.Close();
+            tempsw.Dispose();
+=======
             typedhistory[0] = new cls_historyitem(title,txtin_url.Text);
+>>>>>>> b5759978389aeacf62db4f92227865746d7d20f5
             string[] fake = new string[30];
             lst_typedhistory.ItemsSource = fake;
             lst_typedhistory.ItemsSource = typedhistory;
@@ -133,6 +167,83 @@ namespace TwitchGUI
         // change content of url field and goes back to main tab after selecting an item from history
         private void lst_typedhistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+<<<<<<< HEAD
+            if (lst_typedhistory.SelectedItem != null)
+            {
+                cls_historyitem temp = lst_typedhistory.SelectedItem as cls_historyitem;
+                txtin_url.Text = temp.Url;
+                tabControl.SelectedItem = main; 
+            }
+        }
+
+        // parser for the title of a youtube video
+        private string yt_parser()
+        {
+            string html = new WebClient().DownloadString(txtin_url.Text);
+            string[] splitted_html_t1 = Regex.Split(html, "<meta name=\"title\" content=\"");
+            string[] splitted_html_t2 = Regex.Split(splitted_html_t1[1], "\">");
+            return splitted_html_t2[0];
+        }
+
+        // parser for the title of a twitch stream/VOD
+        private string tw_parser()
+        {
+            string html = new WebClient().DownloadString(txtin_url.Text);
+            string[] splitted_html_t1 = Regex.Split(html, "' property='og:description'>");
+            string[] splitted_html_t2 = Regex.Split(splitted_html_t1[0], "<meta content='");
+            return splitted_html_t2[splitted_html_t2.Length - 1];
+        }
+
+        private void btn_clrhistory_Click(object sender, RoutedEventArgs e)
+        {
+            string[] fake = new string[30];
+            lst_typedhistory.ItemsSource = fake;
+            typedhistory = new List<cls_historyitem>();
+            File.Delete("History.txt");
+            load_history();
+            lst_typedhistory.ItemsSource = typedhistory;
+        }
+
+        private void load_history()
+        {
+            if (!File.Exists("History.txt")) File.Create("History.txt");
+            else
+            {
+                string[] lines = File.ReadAllLines("History.txt");
+                List<string[]> triplets = new List<string[]>();
+                foreach (string l in lines)
+                {
+                    triplets.Add(l.Split('§'));
+                }
+                foreach (string[] ss in triplets)
+                {
+                    tmptypedhistory.Add(new cls_historyitem(ss[0], ss[1], ss[2]));
+                }
+                for (int i = 1; i <= tmptypedhistory.Count; i++)
+                {
+                    if (i <= 20) typedhistory.Add(tmptypedhistory[tmptypedhistory.Count - i]);
+                }
+            }
+        }
+        #endregion
+
+        #region GUI input behaviour
+        // paste from clipboard in url field on doubleclick
+        private void txtin_url_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            txtin_url.Text = Clipboard.GetText();
+        }
+
+        // simple code to clear the text field upon focus
+        private void txtin_url_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+            tb.GotFocus -= txtin_url_GotFocus;
+        } 
+        #endregion
+
+=======
             cls_historyitem temp = lst_typedhistory.SelectedItem as cls_historyitem;
             txtin_url.Text = temp.Url;
             tabControl.SelectedItem = main;
@@ -155,5 +266,6 @@ namespace TwitchGUI
             string[] splitted_html_t2 = Regex.Split(splitted_html_t1[0], "<meta content='");
             return splitted_html_t2[splitted_html_t2.Length - 1];
         }
+>>>>>>> b5759978389aeacf62db4f92227865746d7d20f5
     }
 }

@@ -3,10 +3,10 @@
   <PropertyGroup>
     <PublishUrlHistory>C:\Users\vkmi\OneDrive\LivestreamerGui\|C:\Users\vkmi\Downloads\tw_gui\|C:\Users\vkmi\Downloads\</PublishUrlHistory>
     <InstallUrlHistory />
-    <SupportUrlHistory />
+    <SupportUrlHistory>https://github.com/vkmi/livestreamergui/issues</SupportUrlHistory>
     <UpdateUrlHistory />
     <BootstrapperUrlHistory />
-    <ErrorReportUrlHistory />
+    <ErrorReportUrlHistory>https://github.com/vkmi/livestreamergui/issues</ErrorReportUrlHistory>
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>
