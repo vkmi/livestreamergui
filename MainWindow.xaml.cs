@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 using System.Media;
+using System.Net;
+using System.Text.RegularExpressions;
 
 namespace TwitchGUI
 {
@@ -114,11 +116,14 @@ namespace TwitchGUI
         // handles typedhistory
         private void add_to_history()
         {
+            string title = txtin_url.Text;
+            if (txtin_url.Text.Contains("youtu")) title = yt_parser();
+            else if (txtin_url.Text.Contains("twitch")) title = tw_parser();
             for (int i = typedhistory.Length-2; i > 0; i--)
             {
                 typedhistory[i] = typedhistory[i - 1];
             }
-            typedhistory[0] = txtin_url.Text;
+            typedhistory[0] = title;
             string[] fake = new string[30];
             lst_typedhistory.ItemsSource = fake;
             lst_typedhistory.ItemsSource = typedhistory;
@@ -132,5 +137,22 @@ namespace TwitchGUI
             tabControl.SelectedItem = main;
         }
 
+        // parser for the title of a youtube video
+        private string yt_parser()
+        {
+            string html = new WebClient().DownloadString(txtin_url.Text);
+            string[] splitted_html_t1 = Regex.Split(html, "<meta name=\"title\" content=\"");
+            string[] splitted_html_t2 = Regex.Split(splitted_html_t1[1], "\">");
+            return splitted_html_t2[0];
+        }
+
+        // parser for the title of a twitch stream/VOD
+        private string tw_parser()
+        {
+            string html = new WebClient().DownloadString(txtin_url.Text);
+            string[] splitted_html_t1 = Regex.Split(html, "' property='og:description'>");
+            string[] splitted_html_t2 = Regex.Split(splitted_html_t1[0], "<meta content='");
+            return splitted_html_t2[splitted_html_t2.Length - 1];
+        }
     }
 }
