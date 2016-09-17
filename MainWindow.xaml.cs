@@ -44,9 +44,12 @@ namespace TwitchGUI
         public MainWindow()
         {
             InitializeComponent();
-
+            if (!File.Exists(path_to_ls))
+            {
+                MessageBox.Show("Livestreamer.exe not found in the default folder. Please install livestreamer in your \"Program Files (x86)\" folder. \nIf you don't have livestreamer installed on your computer you can download it from http://docs.livestreamer.io/install.html");
+            }
             load_history();
-
+            
             #region fill combobox/listbox
             cmb_quality.ItemsSource = qualitylist;
             cmb_quality.DisplayMemberPath = "Name";
@@ -59,7 +62,7 @@ namespace TwitchGUI
         private void btn_play_Click(object sender, RoutedEventArgs e)
         {
             ProcessStartInfo video = new ProcessStartInfo();
-            video.CreateNoWindow = true;
+            video.CreateNoWindow = false;
             video.UseShellExecute = false;
             video.FileName = path_to_ls;
             video.WindowStyle = ProcessWindowStyle.Normal;
@@ -162,7 +165,9 @@ namespace TwitchGUI
         // parser for the title of a youtube video
         private string yt_parser()
         {
-            string html = new WebClient().DownloadString(txtin_url.Text);
+            WebClient url_source = new WebClient();
+            url_source.Encoding = Encoding.UTF8;
+            string html = url_source.DownloadString(txtin_url.Text);
             string[] splitted_html_t1 = Regex.Split(html, "<meta name=\"title\" content=\"");
             string[] splitted_html_t2 = Regex.Split(splitted_html_t1[1], "\">");
             return splitted_html_t2[0];
@@ -171,7 +176,9 @@ namespace TwitchGUI
         // parser for the title of a twitch stream/VOD
         private string tw_parser()
         {
-            string html = new WebClient().DownloadString(txtin_url.Text);
+            WebClient url_source = new WebClient();
+            url_source.Encoding = Encoding.UTF8;
+            string html = url_source.DownloadString(txtin_url.Text);
             string[] splitted_html_t1 = Regex.Split(html, "' property='og:description'>");
             string[] splitted_html_t2 = Regex.Split(splitted_html_t1[0], "<meta content='");
             return splitted_html_t2[splitted_html_t2.Length - 1];
