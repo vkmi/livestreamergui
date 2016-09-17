@@ -31,7 +31,18 @@ namespace TwitchGUI
         public string Source
         {
             get { return _source; }
-        } 
+        }
         #endregion
+
+        //function to remove an item from a list
+        public List<cls_historyitem> remove_from_list(List<cls_historyitem> list)
+        {
+            List<cls_historyitem> tmp = new List<cls_historyitem>();
+            foreach (cls_historyitem item in list)
+            {
+                if (item.Name != this.Name) tmp.Add(item);
+            }
+            return tmp;
+        }
     }
 }

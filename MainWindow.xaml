@@ -6,20 +6,20 @@
         xmlns:local="clr-namespace:TwitchGUI"
         mc:Ignorable="d"
         Title="Livestreamer GUI" Height="150" Width="420">
-        <TabControl x:Name="tabControl" Background="Gray" BorderBrush="Gray">
+    <TabControl x:Name="tabControl" Background="Gray" BorderBrush="Gray">
         <TabItem x:Name="main" Header="Main" Background="Gray" FontSize="14">
             <Grid Background="Gray">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="44"/>
-                    <RowDefinition Height="39"/>
+                    <RowDefinition Height="44"/>
                 </Grid.RowDefinitions>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="btn_play" Content="Play" Grid.Column="3" Margin="5" Click="btn_play_Click" Background="DarkGray" FontSize="18" Height="34"/>
-                    <TextBox x:Name="txtin_url" Text="Url to stream" ToolTip="Double click to paste from clipboard" Margin="5" Background="DarkGray" GotFocus="txtin_url_GotFocus" MouseDoubleClick="txtin_url_MouseDoubleClick" FontSize="18" Height="34"/>
+                    <Button x:Name="btn_play" Content="Play" Grid.Column="3" Margin="5" Click="btn_play_Click" Background="DarkGray" FontSize="18"/>
+                    <TextBox x:Name="txtin_url" Text="Url to stream" ToolTip="Double click to paste from clipboard" Margin="5" Background="DarkGray" GotFocus="txtin_url_GotFocus" MouseDoubleClick="txtin_url_MouseDoubleClick" FontSize="18"/>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -27,9 +27,34 @@
                         <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
-                    <ComboBox x:Name="cmb_quality" Margin="5,0,5,5" Background="Gray" ToolTip="Quality of the stream, default is source/720p" FontSize="18" Height="34"/>
-                    <CheckBox x:Name="chk_chat" Content="Chat" ToolTip="Only for twitch streams" Grid.Column="1" Margin="5,0,5,5" VerticalAlignment="Center" FontSize="18" Height="23"/>
-                    <CheckBox x:Name="chk_timeline" Content="Seekable" ToolTip="Only for twitch vods" Grid.Column="2" Margin="5,0,5,5" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Height="23"/>
+                    <ComboBox x:Name="cmb_quality" Margin="5" Background="Gray" ToolTip="Quality of the stream, default is source/720p" FontSize="18"/>
+                    <CheckBox x:Name="chk_chat" Content="Chat" ToolTip="Only for twitch streams" Grid.Column="1" Margin="5,0,5,5" VerticalAlignment="Center" FontSize="18"/>
+                    <CheckBox x:Name="chk_timeline" Content="Seekable" ToolTip="Only for twitch vods" Grid.Column="2" Margin="5,0,5,5" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+            </Grid>
+        </TabItem>
+        <TabItem x:Name="favs_tab" Header="Favourites" Background="Gray" FontSize="14">
+            <Grid Background="Gray">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ComboBox x:Name="cmb_favs" Margin="5" SelectionChanged="cmb_favs_SelectionChanged"/>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="btn_add_fav" Margin="5" Background="DarkGray" Click="btn_add_fav_Click">
+                        <TextBlock TextAlignment="Center"><Run Text="Add to favourites"/></TextBlock>
+                    </Button>
+                    <Button x:Name="btn_rm_fav" Margin="5" Background="DarkGray" Grid.Column="1" Click="btn_rm_fav_Click">
+                        <TextBlock TextAlignment="Center"><Run Text="Remove"/></TextBlock>
+                    </Button>
+                    <Button x:Name="btn_playfav" Margin="5" Background="DarkGray" Grid.Column="2" Click="btn_play_Click">
+                        <TextBlock TextAlignment="Center"><Run Text="Play"/></TextBlock>
+                    </Button>
                 </Grid>
             </Grid>
         </TabItem>
@@ -38,7 +63,6 @@
                 <ListBox x:Name="lst_typedhistory" Margin="5,5,5,33" Background="DarkGray" SelectionChanged="lst_typedhistory_SelectionChanged">
                 </ListBox>
                 <Button x:Name="btn_clrhistory" Content="Clear History" Width="100" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Click="btn_clrhistory_Click"/>
-
             </Grid>
         </TabItem>
         <TabItem x:Name="cli" Header="CLI" Background="Gray" FontSize="14">

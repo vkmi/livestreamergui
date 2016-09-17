@@ -38,7 +38,8 @@ namespace TwitchGUI
             new cls_qualityitem(5,"Worst", "144p","mobile")};
 
         List<cls_historyitem> typedhistory = new List<cls_historyitem>(); 
-        List<cls_historyitem> tmptypedhistory = new List<cls_historyitem>(); 
+        List<cls_historyitem> tmptypedhistory = new List<cls_historyitem>();
+        List<cls_historyitem> favslist = new List<cls_historyitem>();
         #endregion
 
         public MainWindow()
@@ -49,12 +50,15 @@ namespace TwitchGUI
                 MessageBox.Show("Livestreamer.exe not found in the default folder. Please install livestreamer in your \"Program Files (x86)\" folder. \nIf you don't have livestreamer installed on your computer you can download it from http://docs.livestreamer.io/install.html");
             }
             load_history();
+            load_favs();
             
             #region fill combobox/listbox
             cmb_quality.ItemsSource = qualitylist;
             cmb_quality.DisplayMemberPath = "Name";
             lst_typedhistory.ItemsSource = typedhistory;
-            lst_typedhistory.DisplayMemberPath = "Name"; 
+            lst_typedhistory.DisplayMemberPath = "Name";
+            cmb_favs.ItemsSource = favslist;
+            cmb_favs.DisplayMemberPath = "Name";
             #endregion
         }
 
@@ -95,7 +99,6 @@ namespace TwitchGUI
             video.Arguments = args;
             Process.Start(video);
         }
-
         
         // simple code to assign the right keywords based on the kind of stream (youtube/twitch)
         private void asssign_quality()
@@ -162,28 +165,6 @@ namespace TwitchGUI
             }
         }
 
-        // parser for the title of a youtube video
-        private string yt_parser()
-        {
-            WebClient url_source = new WebClient();
-            url_source.Encoding = Encoding.UTF8;
-            string html = url_source.DownloadString(txtin_url.Text);
-            string[] splitted_html_t1 = Regex.Split(html, "<meta name=\"title\" content=\"");
-            string[] splitted_html_t2 = Regex.Split(splitted_html_t1[1], "\">");
-            return splitted_html_t2[0];
-        }
-
-        // parser for the title of a twitch stream/VOD
-        private string tw_parser()
-        {
-            WebClient url_source = new WebClient();
-            url_source.Encoding = Encoding.UTF8;
-            string html = url_source.DownloadString(txtin_url.Text);
-            string[] splitted_html_t1 = Regex.Split(html, "' property='og:description'>");
-            string[] splitted_html_t2 = Regex.Split(splitted_html_t1[0], "<meta content='");
-            return splitted_html_t2[splitted_html_t2.Length - 1];
-        }
-
         private void btn_clrhistory_Click(object sender, RoutedEventArgs e)
         {
             string[] fake = new string[30];
@@ -216,6 +197,129 @@ namespace TwitchGUI
                 }
             }
         }
+
+        
+        #endregion
+
+        #region Stuff related to favourites
+        private void add_to_favs()
+        {
+            // picks the right keywords depending on source
+            string title = txtin_url.Text;
+            string sauce = "";
+            if (txtin_url.Text.Contains("youtu"))
+            {
+                title = yt_parser();
+                sauce = "YouTube";
+            }
+            else if (txtin_url.Text.Contains("twitch"))
+            {
+                title = tw_parser();
+                if (txtin_url.Text.Contains("/v/")) sauce = "Twitch VOD";
+                else sauce = "Twitch stream";
+            }
+
+            // adds element to the volatile history
+            favslist.Add(new cls_historyitem(title, txtin_url.Text, sauce));
+
+            // adds element to the txt for non volatile history
+            StreamWriter tempsw = new StreamWriter("Favourites.txt", true);
+            tempsw.WriteLine(title + "§" + txtin_url.Text + "§" + sauce);
+            tempsw.Close();
+            tempsw.Dispose();
+
+            // forces the listbox to update by changing the items source to a fake list and back to the right one
+            string[] fake = new string[30];
+            cmb_favs.ItemsSource = fake;
+            cmb_favs.ItemsSource = favslist;
+        }
+
+        private void btn_rm_fav_Click(object sender, RoutedEventArgs e)
+        {
+            if (cmb_favs.SelectedItem != null)
+            {
+                cls_historyitem si = cmb_favs.SelectedItem as cls_historyitem;
+                favslist = si.remove_from_list(favslist);
+                remove_from_favtxt();
+                string[] fake = new string[30];
+                cmb_favs.ItemsSource = fake;
+                cmb_favs.ItemsSource = favslist;
+            }
+        }
+
+        // function called when the button is pressed
+        private void btn_add_fav_Click(object sender, RoutedEventArgs e)
+        {
+            add_to_favs();
+        }
+
+        // change content of url field after selecting an item from favs
+        private void cmb_favs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmb_favs.SelectedItem != null)
+            {
+                cls_historyitem temp = cmb_favs.SelectedItem as cls_historyitem;
+                txtin_url.Text = temp.Url;
+            }
+        }
+
+        // parse all items from the txt favourites file to the combobox
+        private void load_favs()
+        {
+            if (!File.Exists("Favourites.txt")) File.Create("Favourites.txt");
+            else
+            {
+                string[] lines = File.ReadAllLines("Favourites.txt");
+                List<string[]> triplets = new List<string[]>();
+                foreach (string l in lines)
+                {
+                    triplets.Add(l.Split('§'));
+                }
+                foreach (string[] ss in triplets)
+                {
+                    favslist.Add(new cls_historyitem(ss[0], ss[1], ss[2]));
+                }
+                favslist.Sort((x, y) => x.Name.CompareTo(y.Name));
+            }
+        }
+        #endregion
+
+        #region Support functions
+        // parser for the title of a youtube video
+        private string yt_parser()
+        {
+            WebClient url_source = new WebClient();
+            url_source.Encoding = Encoding.UTF8;
+            string html = url_source.DownloadString(txtin_url.Text);
+            string[] splitted_html_t1 = Regex.Split(html, "<meta name=\"title\" content=\"");
+            string[] splitted_html_t2 = Regex.Split(splitted_html_t1[1], "\">");
+            return splitted_html_t2[0];
+        }
+
+        // parser for the title of a twitch stream/VOD
+        private string tw_parser()
+        {
+            WebClient url_source = new WebClient();
+            url_source.Encoding = Encoding.UTF8;
+            string html = url_source.DownloadString(txtin_url.Text);
+            string[] splitted_html_t1 = Regex.Split(html, "' property='og:description'>");
+            string[] splitted_html_t2 = Regex.Split(splitted_html_t1[0], "<meta content='");
+            return splitted_html_t2[splitted_html_t2.Length - 1];
+        }
+
+        private void remove_from_favtxt()
+        {
+            StreamWriter swtemp = new StreamWriter("temp.txt", true);
+            foreach (cls_historyitem item in favslist)
+            {
+                swtemp.WriteLine(item.Name + "§" + item.Url + "§" + item.Source);
+            }
+            swtemp.Close();
+            swtemp.Dispose();
+            File.Delete("Favourites.txt");
+            File.Copy("temp.txt", "Favourites.txt");
+            File.Delete("temp.txt");
+        }
         #endregion
 
         #region GUI input behaviour
@@ -231,7 +335,9 @@ namespace TwitchGUI
             TextBox tb = (TextBox)sender;
             tb.Text = string.Empty;
             tb.GotFocus -= txtin_url_GotFocus;
-        } 
+        }
+
         #endregion
+
     }
 }
