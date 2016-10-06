@@ -51,7 +51,7 @@ namespace TwitchGUI
             }
             load_history();
             load_favs();
-            
+
             #region fill combobox/listbox
             cmb_quality.ItemsSource = qualitylist;
             cmb_quality.DisplayMemberPath = "Name";
@@ -60,13 +60,20 @@ namespace TwitchGUI
             cmb_favs.ItemsSource = favslist;
             cmb_favs.DisplayMemberPath = "Name";
             #endregion
+
+            // removed because it was more of an annoiance than useful
+            /*if (Clipboard.GetText().Contains("youtu") || Clipboard.GetText().Contains("twitch"))
+            {
+                txtin_url.Text = Clipboard.GetText();
+                btn_play_Click(null, null);
+            }*/
         }
 
         // play function
         private void btn_play_Click(object sender, RoutedEventArgs e)
         {
             ProcessStartInfo video = new ProcessStartInfo();
-            video.CreateNoWindow = false;
+            video.CreateNoWindow = true;
             video.UseShellExecute = false;
             video.FileName = path_to_ls;
             video.WindowStyle = ProcessWindowStyle.Normal;
@@ -79,12 +86,16 @@ namespace TwitchGUI
             args += " " +txtin_url.Text + " " + video_quality;
             video.Arguments = args;
             
-            Process.Start(video);
+            /*Process p =*/ Process.Start(video);
             if ((chk_chat.IsChecked == true) && (txtin_url.Text.Contains("twitch")))
             {
                 System.Diagnostics.Process.Start(txtin_url.Text + "/chat");
             }
             add_to_history();
+            // this should stop me from doing anything until the process is over
+            // I'm not sure this is a good idea. It's a good idea for playlists though
+            // I can use this only whit playlists
+            // p.WaitForExit();
         }
 
         // just passes all typed text as argument to livestreamer to use it like from cli
@@ -326,7 +337,12 @@ namespace TwitchGUI
         // paste from clipboard in url field on doubleclick
         private void txtin_url_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            txtin_url.Text = Clipboard.GetText();
+            if (Clipboard.GetText().Contains("http")) 
+            {
+                txtin_url.Text = Clipboard.GetText();
+                if (Clipboard.GetText().Contains("youtu") || Clipboard.GetText().Contains("twitch"))
+                    btn_play_Click(null, null);
+            }
         }
 
         // simple code to clear the text field upon focus

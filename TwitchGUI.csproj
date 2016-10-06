@@ -28,7 +28,7 @@
     <SupportUrl>https://github.com/vkmi/livestreamergui/issues</SupportUrl>
     <ErrorReportUrl>https://github.com/vkmi/livestreamergui/issues</ErrorReportUrl>
     <PublisherName>VkMi</PublisherName>
-    <ApplicationRevision>13</ApplicationRevision>
+    <ApplicationRevision>17</ApplicationRevision>
     <ApplicationVersion>1.2.3.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
