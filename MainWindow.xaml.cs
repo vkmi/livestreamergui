@@ -29,13 +29,17 @@ namespace TwitchGUI
         #region Global variables
         string path_to_ls = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + "\\Livestreamer\\livestreamer.exe";
         string video_quality = "best";
+        string path_to_fav = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LivestreamerGUI\\Favourites.txt";
+        string path_to_history = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LivestreamerGUI\\History.txt";
+
         cls_qualityitem[] qualitylist = new cls_qualityitem[] {
             new cls_qualityitem(0,"Audio", "audio_mp4","audio"),
             new cls_qualityitem(1,"Best (default)", "720p","source"),
             new cls_qualityitem(2,"High", "480p","high"),
             new cls_qualityitem(3,"Medium", "360p","medium"),
             new cls_qualityitem(4,"Low", "240p","low"),
-            new cls_qualityitem(5,"Worst", "144p","mobile")};
+            new cls_qualityitem(5,"Worst", "144p","mobile")
+        };
 
         List<cls_historyitem> typedhistory = new List<cls_historyitem>(); 
         List<cls_historyitem> tmptypedhistory = new List<cls_historyitem>();
@@ -48,6 +52,8 @@ namespace TwitchGUI
             if (!File.Exists(path_to_ls))
             {
                 MessageBox.Show("Livestreamer.exe not found in the default folder. Please install livestreamer in your \"Program Files (x86)\" folder. \nIf you don't have livestreamer installed on your computer you can download it from http://docs.livestreamer.io/install.html");
+                if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LivestreamerGUI"))
+                    Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LivestreamerGUI");
             }
             load_history();
             load_favs();
@@ -73,7 +79,7 @@ namespace TwitchGUI
         private void btn_play_Click(object sender, RoutedEventArgs e)
         {
             ProcessStartInfo video = new ProcessStartInfo();
-            video.CreateNoWindow = true;
+            video.CreateNoWindow = false;
             video.UseShellExecute = false;
             video.FileName = path_to_ls;
             video.WindowStyle = ProcessWindowStyle.Normal;
@@ -154,7 +160,7 @@ namespace TwitchGUI
             typedhistory.Insert(0,new cls_historyitem(title, txtin_url.Text, sauce));
 
             // adds element to the txt for non volatile history
-            StreamWriter tempsw = new StreamWriter("History.txt", true);
+            StreamWriter tempsw = new StreamWriter(path_to_history, true);
             tempsw.WriteLine(title + "§" + txtin_url.Text + "§" + sauce);
             tempsw.Close();
             tempsw.Dispose();
@@ -181,7 +187,7 @@ namespace TwitchGUI
             string[] fake = new string[30];
             lst_typedhistory.ItemsSource = fake;
             typedhistory = new List<cls_historyitem>();
-            File.Delete("History.txt");
+            File.Delete(path_to_history);
             load_history();
             lst_typedhistory.ItemsSource = typedhistory;
         }
@@ -189,10 +195,10 @@ namespace TwitchGUI
         // parse last 20 history items from the txt file to a local list
         private void load_history()
         {
-            if (!File.Exists("History.txt")) File.Create("History.txt");
+            if (!File.Exists(path_to_history)) File.Create(path_to_history);
             else
             {
-                string[] lines = File.ReadAllLines("History.txt");
+                string[] lines = File.ReadAllLines(path_to_history);
                 List<string[]> triplets = new List<string[]>();
                 foreach (string l in lines)
                 {
@@ -234,7 +240,7 @@ namespace TwitchGUI
             favslist.Add(new cls_historyitem(title, txtin_url.Text, sauce));
 
             // adds element to the txt for non volatile history
-            StreamWriter tempsw = new StreamWriter("Favourites.txt", true);
+            StreamWriter tempsw = new StreamWriter(path_to_fav, true);
             tempsw.WriteLine(title + "§" + txtin_url.Text + "§" + sauce);
             tempsw.Close();
             tempsw.Dispose();
@@ -277,10 +283,10 @@ namespace TwitchGUI
         // parse all items from the txt favourites file to the combobox
         private void load_favs()
         {
-            if (!File.Exists("Favourites.txt")) File.Create("Favourites.txt");
+            if (!File.Exists(path_to_fav)) File.Create(path_to_fav);
             else
             {
-                string[] lines = File.ReadAllLines("Favourites.txt");
+                string[] lines = File.ReadAllLines(path_to_fav);
                 List<string[]> triplets = new List<string[]>();
                 foreach (string l in lines)
                 {
@@ -327,8 +333,8 @@ namespace TwitchGUI
             }
             swtemp.Close();
             swtemp.Dispose();
-            File.Delete("Favourites.txt");
-            File.Copy("temp.txt", "Favourites.txt");
+            File.Delete(path_to_fav);
+            File.Copy("temp.txt", path_to_fav);
             File.Delete("temp.txt");
         }
         #endregion
@@ -353,7 +359,14 @@ namespace TwitchGUI
             tb.GotFocus -= txtin_url_GotFocus;
         }
 
-        #endregion
+        private void txtin_url_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                btn_play_Click(null, null);
+            }
+        }
 
+        #endregion
     }
 }

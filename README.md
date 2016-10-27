@@ -12,6 +12,10 @@ Any other website compatible with livestreamer works leaving all settings as def
 
 ---
 
+## Major known problems
+
+- If livestreamer can't stream a specific video (protected video on youtube or trying to watch a video at an unavailable quality setting) the video won't play and won't signal why. No easy fix for this.
+
 - [Screenshots](http://imgur.com/a/HdpOt)  
 - [Download the installer from here](https://1drv.ms/f/s!AlZZhB75siHNg7QzEL3E4rpYW5GCHA)  
 - [Todo list](https://trello.com/b/uUrYz6AP/livestreamer-gui)
